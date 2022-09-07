@@ -1,3 +1,6 @@
+/* eslint-disable eslint-comments/no-unused-disable */
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable react-native/no-inline-styles */
 import 'react-native-gesture-handler';
 import React from 'react';
 import {LogBox} from 'react-native';
