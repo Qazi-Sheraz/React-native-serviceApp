@@ -9,23 +9,25 @@ export class Testing extends React.Component {
             
             <View
             style={{
-                backgroundColor:'#aff',
+                
                 flex:1,
         }}>
-            <Text
+           <View
             style={{
-              fontSize: 29,
-              color: '#fff',
-              fontWeight: 'bold',
-              fontStyle: 'italic',
-              textAlign: 'center',
-              textDecorationLine: 'underline',
-            }}
-            // numberOfLines={1}
-          >
-            hello Sherrii {'\n'} This is MY Laptop Hp 1030 ELITEBOOK G2
-          </Text>
+                backgroundColor:'#afa',
+                height:'20%',
+                width:'100%',
+        }}>
            
+            </View>
+            <View
+            style={{
+                backgroundColor:'red',
+                height:'80%',
+                width:'100%',
+        }}>
+           
+            </View>
             </View>
         );
     }
