@@ -4,9 +4,9 @@
 /* eslint-disable react/self-closing-comp */
 import React from 'react';
 import {View,TouchableOpacity,Text,Image,TextInput} from 'react-native';
-import { AppBtn, NavHeader} from '../../components';
+import {NavHeader} from '../../components';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import { TouchImg } from '../../components/TouchImg';
+
 
 
 
@@ -43,6 +43,7 @@ export class BookService extends React.Component {
         
 
         </View>
+        
 
         <View
         style={{
@@ -99,7 +100,9 @@ export class BookService extends React.Component {
           flexDirection:'row',
         }}>
          <TouchableOpacity
-          onPress={this.onPress}
+          onPress={() => {
+                this.props.navigation.navigate('AirConditioner');
+              }}
           style={{
 
                 height: '85%',
