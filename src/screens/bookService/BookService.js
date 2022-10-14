@@ -34,22 +34,60 @@ export class BookService extends React.Component {
           contentContainerStyle={{
             flexGrow: 2,
           }}>
+
         <View
         style={{
-          backgroundColor:'#faf',
-          height:'35%',
+          // backgroundColor:'#faf',
+          height:'30%',
         }}>
         
-        
-        
-        
+
         </View>
+
         <View
         style={{
-          // backgroundColor:'#faa',
-          height:'65%',
+          // backgroundColor:'red',
+          height:'70%',
           
         }}>
+
+        <View
+        style={{
+          // backgroundColor:'#fa2',
+          height:'10%',
+          padding:12,
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexDirection:'row',
+          borderTopWidth:0.1,
+          borderRadius:15,
+        }}>
+        <Text
+           style={{
+              fontSize: 20,
+              fontWeight: "bold"
+           
+            }}>Popular Categories</Text>
+            <TouchableOpacity
+          onPress={this.onPress}
+          style={{
+            backgroundColor:'#f5f6',
+
+                height: '90%',
+                width: '25%',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 15,
+
+              }}>
+              
+          <Text
+          style={{
+              fontSize: 15,
+              fontWeight: "bold"
+            }}>See all</Text>
+        </TouchableOpacity>
+        </View>
         
         <View
         style={{
@@ -66,19 +104,18 @@ export class BookService extends React.Component {
 
                 height: '85%',
                 width: '20%',
-                borderRadius: 15,
-                borderColor: 'white',
-                borderWidth: 0.5,
+                
                 alignItems: 'center',
                 justifyContent: 'center',
 
               }}>
               <Image
-          source={require('../../assets/Ac.jpeg')}
+          source={require('../../assets/Ac.png')}
           style={{
             resizeMode: 'contain',
             height: '80%',
             width :'100%',
+            
           }}
         />
               
@@ -93,13 +130,19 @@ export class BookService extends React.Component {
 
                 height: '80%',
                 width: '20%',
-                borderRadius: 15,
-                borderColor: 'white',
-                borderWidth: 0.5,
+                
                 alignItems: 'center',
                 justifyContent: 'center',
 
               }}>
+               <Image
+          source={require('../../assets/car.png')}
+          style={{
+            resizeMode: 'contain',
+            height: '80%',
+            width :'100%',
+          }}
+        />
           <Text
           style={{
               fontSize: 15,
@@ -113,15 +156,13 @@ export class BookService extends React.Component {
 
                 height: '80%',
                 width: '20%',
-                borderRadius: 15,
-                bborderColor: 'white',
-                borderWidth: 0.5,
+                
                 alignItems: 'center',
                 justifyContent: 'center',
 
               }}>
               <Image
-          source={require('../../assets/plumber.jpeg')}
+          source={require('../../assets/plumber1.png')}
           style={{
             resizeMode: 'contain',
             height: '80%',
@@ -139,13 +180,20 @@ export class BookService extends React.Component {
 
                 height: '80%',
                 width: '20%',
-                borderRadius: 15,
-                borderColor: 'white',
-                borderWidth: 0.5,
+                
                 alignItems: 'center',
                 justifyContent: 'center',
 
               }}>
+              <Image
+          source={require('../../assets/electric.png')}
+          style={{
+            resizeMode: 'contain',
+            height: '80%',
+            width :'100%',
+          }}
+        />
+
           <Text
           style={{
               fontSize: 15,
@@ -156,8 +204,8 @@ export class BookService extends React.Component {
         
         <View
         style={{
-          backgroundColor:'#faf',
-          height:'35%',
+          // backgroundColor:'#faf',
+          height:'30%',
           padding:4,
           justifyContent:'space-around',
           flexDirection:'row',
@@ -168,14 +216,19 @@ export class BookService extends React.Component {
 
                 height: '80%',
                 width: '20%',
-                borderRadius: 15,
-                borderColor: 'white',
-                borderWidth: 0.5,
+               
                 alignItems: 'center',
                 justifyContent: 'center',
 
               }}>
-              
+              <Image
+          source={require('../../assets/carPntr.png')}
+          style={{
+            resizeMode: 'contain',
+            height: '80%',
+            width :'100%',
+          }}
+        />
           <Text
           style={{
               fontSize: 15,
@@ -187,13 +240,19 @@ export class BookService extends React.Component {
 
                 height: '80%',
                 width: '20%',
-                borderRadius: 15,
-                borderColor: 'white',
-                borderWidth: 0.5,
+                
                 alignItems: 'center',
                 justifyContent: 'center',
 
               }}>
+              <Image
+          source={require('../../assets/paint.png')}
+          style={{
+            resizeMode: 'contain',
+            height: '80%',
+            width :'100%',
+          }}
+        />
           <Text
           style={{
               fontSize: 15,
@@ -207,21 +266,20 @@ export class BookService extends React.Component {
 
                 height: '80%',
                 width: '20%',
-                borderRadius: 15,
-                borderColor: 'white',
-                borderWidth: 0.5,
+                
                 alignItems: 'center',
                 justifyContent: 'center',
 
               }}>
               <Image
-          source={require('../../assets/plumber.jpeg')}
+          source={require('../../assets/pest-control.jpg')}
           style={{
             resizeMode: 'contain',
             height: '80%',
             width :'100%',
           }}
         />
+             
           <Text
           style={{
               fontSize: 15,
@@ -233,13 +291,19 @@ export class BookService extends React.Component {
 
                 height: '80%',
                 width: '20%',
-                borderRadius: 15,
-                borderColor: 'white',
-                borderWidth: 0.5,
+                
                 alignItems: 'center',
                 justifyContent: 'center',
 
               }}>
+              <Image
+          source={require('../../assets/lock.png')}
+          style={{
+            resizeMode: 'contain',
+            height: '80%',
+            width :'100%',
+          }}
+        />
           <Text
           style={{
               fontSize: 15,
