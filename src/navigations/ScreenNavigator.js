@@ -1,3 +1,4 @@
+/* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 
 
@@ -5,8 +6,12 @@ import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SignUP } from '../screens/signUp';
-import { Testing } from '../screens/testing';
+
+
+import { BookService } from '../screens/bookService/BookService';
+import { SignUp } from '../screens/signUp/SignUp';
+
+
 
 
 
@@ -17,20 +22,22 @@ export const ScreenNavigator = () => {
  return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen 
-           name="Testing" 
-           component={Testing} 
-           options={{headerShown: false}}
-           />
-      
-        <Stack.Screen 
-           name="SignUp" 
-           component={SignUP} 
+
+      <Stack.Screen
+           name="BookService"
+           component={BookService} 
            options={{headerShown: false}}
            />
 
+      <Stack.Screen
+           name="SignUp"
+           component={SignUp} 
+           options={{headerShown: false}}
+           />
+
+        
            
-
+      
       </Stack.Navigator>
       
     </NavigationContainer>
