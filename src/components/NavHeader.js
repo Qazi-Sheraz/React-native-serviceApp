@@ -39,6 +39,7 @@ export class NavHeader extends React.Component {
             style={{
               color: this.props.custom ? '#fff' : '#000',
               fontSize: 18,
+              fontWeight:'bold',
             }}>
             {this.props.title}
           </Text>
