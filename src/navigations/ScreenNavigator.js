@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { BookService } from '../screens/bookService/BookService';
 import { SignUp } from '../screens/signUp/SignUp';
+import { Categories } from '../screens/bookService';
 
 
 
@@ -22,6 +23,12 @@ export const ScreenNavigator = () => {
  return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen
+      
+           name="Categories"
+           component={Categories} 
+           options={{headerShown: false}}
+           />
 
       <Stack.Screen
            name="BookService"
