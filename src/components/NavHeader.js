@@ -25,7 +25,7 @@ export class NavHeader extends React.Component {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          <Ionicons name={this.props.leftIc} size={25} color={'red'} />
+          <Ionicons name={this.props.leftIc} size={25} color={'black'} />
         </TouchableOpacity>
         <View
           style={{
@@ -39,7 +39,7 @@ export class NavHeader extends React.Component {
             style={{
               color: this.props.custom ? '#fff' : '#000',
               fontSize: 18,
-              fontWeight:'bold',
+              fontWeight: 'bold',
             }}>
             {this.props.title}
           </Text>
@@ -54,7 +54,7 @@ export class NavHeader extends React.Component {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          <Ionicons name={this.props.rightIc} size={25} color={'red'} />
+          <Ionicons name={this.props.rightIc} size={25} color={'black'} />
         </TouchableOpacity>
       </View>
     );

@@ -1,0 +1,18 @@
+export const size = {
+  text_10: 10,
+  text_12: 12,
+  text_14: 14,
+  text_16: 16,
+  text_18: 18,
+  text_20: 20,
+  text_22: 22,
+  text_24: 24,
+  text_26: 26,
+  text_28: 28,
+  text_30: 30,
+  text_32: 32,
+  text_34: 34,
+  text_36: 36,
+  text_38: 38,
+  text_40: 40,
+};
