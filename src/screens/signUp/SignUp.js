@@ -1,302 +1,185 @@
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable prettier/prettier */
-import React from "react";
-import {View,Text,TouchableOpacity,Image,TextInput,Modal} from "react-native";
+import React, {useState} from 'react';
+import {View, Text, SafeAreaView, Alert} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {AppInput, AppBtn, NavHeader, Loading} from '../../components';
+import {AppButton, AppHeader, AppInput, DropDown} from '../../components';
+import {Icon} from 'react-native-elements';
 import {
-    widthPercentageToDP as w,
-    heightPercentageToDP as h,
-  } from 'react-native-responsive-screen';
- 
-
-
-
-
-export class SignUp extends React.Component {
-
-  
-  sendData = (param, param2) => {
-    console.warn('This is param =    ' + param);
-    console.warn('This is param2=   ' + param2);
-  };
-  // sendData2 = SignIn => {
-  //   console.warn('Sign In= ' + SignIn);
-  // };
-  // createUser = () => {
-  //   this.showLoading(true);
-  //   setTimeout(() => {
-  //     this.showLoading(false);
-  //   }, 3000);
-  //   //   if (
-  //   //     this.state.name === '' ||
-  //   //     this.state.email === '' ||
-  //   //     this.state.password === ''
-  //   //   ) {
-  //   //     alert('All fields are required');
-  //   //   } else {
-  //   //     alert('All ok');
-  //   //   }
-  //   // };
-  //   // if (this.state.name === '')
-  //   // {alert('name are required');}
-  //   //  else {
-  //   //   if (this.state.email === '')
-  //   // {alert(' email are required');
-  //   // }}
-
-  //   //   else{
-  //   //   if(this.state.password === '')
-  //   //   {
-  //   //     alert('password is inviled');
-  //   //   }else{
-  //   //
-  //   //   alert('All ok');
-  //   // }
-  //   // };
-  //   // const res = validator.validate(this.state.email);
-
-  //   this.state.name === ''
-  //     ? alert('Name is required')
-  //     : // : !res
-  //     res === false
-  //     ? alert('Invalid Email')
-  //     : this.state.password.length < 8
-  //     ? alert('Password must contain 8 characters')
-  //     : this.state.phone.length < 11
-  //     ? alert('Invalid Phone number')
-  //     : this.signUp();
-
-  //   // AsyncStorage.setItem('userData', JSON.stringify(data), () => {
-  //   //   Alert.alert(
-  //   //     'Alert....',
-  //   //     'Your account have been created successfully please Sign in',
-  //   //     [
-  //   //       {
-  //   //         text: 'No',
-  //   //       },
-  //   //       {text: 'Yes', onPress: () => this.setState({modalVisible: true})},
-  //   //     ],
-  //   //   );
-  //   // }
-  //   // );
-  // };
-
-  signUp = () => {
-    this.showLoading(true);
-    const params = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      phone: this.state.phone,
-    };
-    axiosInstance
-      // .post(baseUrl + 'users/signUp', params)
-      .then(res => {
-        this.showLoading(false);
-
-        const data = res.data;
-        if (data.status === '200') {
-          alert(data.msg);
-        } else {
-          alert(data.msg);
-        }
-      })
-      .catch(err => {
-        this.showLoading(false);
-
-        console.warn(err.message);
-      });
+  colors,
+  SignUPFormFields,
+  WP,
+  SignUpVS,
+  Selection_List,
+  Pronoun_List,
+} from '../../shared/exporter';
+import {Formik} from 'formik';
+import {styles} from './styles';
+import auth from '@react-native-firebase/auth';
+const SignUp = ({navigation}) => {
+  const onSubmit = async values => {
+    try {
+      const isUserCreated = await auth().createUserWithEmailAndPassword(
+        values.email,
+        values.password,
+        values.firstName,
+        values.lastName,
+        values.phone,
+        values.country,
+        values.city,
+        values.age,
+      );
+      console.log('isUserCreated', isUserCreated);
+      alert('User Created Successfuly');
+      navigation.navigate('Login');
+    } catch (error) {
+      alert('ERROR', error);
+      console.log('error', error);
+    }
   };
 
- 
+  return (
+    <SafeAreaView style={styles.container}>
+      <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
+        <AppHeader title={'Create Your\nAccount'} />
+        <Formik
+          initialValues={SignUPFormFields}
+          onSubmit={values => {
+            onSubmit(values);
+          }}
+          validationSchema={SignUpVS}>
+          {({
+            values,
+            handleChange,
+            errors,
+            setFieldTouched,
+            touched,
+            isValid,
+            handleSubmit,
+            handleReset,
+          }) => (
+            <View>
+              <AppInput
+                title={'First Name'}
+                placeholder={'Enter your first name'}
+                placeholderTextColor={colors.g3}
+                onChangeText={handleChange('firstName')}
+                value={values.firstName}
+                touched={touched.firstName}
+                errorMessage={errors.firstName}
+              />
+              <AppInput
+                title={'Last Name'}
+                placeholder={'Enter your last name'}
+                placeholderTextColor={colors.g3}
+                onChangeText={handleChange('lastName')}
+                value={values.lastName}
+                touched={touched.lastName}
+                errorMessage={errors.lastName}
+              />
 
-  showLoading = value => {
-    this.setState({visible: value});
-  };
+              <AppInput
+                title={'Email'}
+                placeholder={'Enter Email'}
+                placeholderTextColor={colors.g3}
+                onChangeText={handleChange('email')}
+                value={values.email}
+                touched={touched.email}
+                errorMessage={errors.email}
+                keyboardType={'email-address'}
+              />
+              <AppInput
+                title={'Password'}
+                placeholder={'Enter your password'}
+                onChangeText={handleChange('password')}
+                placeholderTextColor={colors.g3}
+                value={values.password}
+                touched={touched.password}
+                errorMessage={errors.password}
+                renderErrorMessage={errors.password}
+                secureTextEntry={true}
+              />
+              <AppInput
+                title={'Phone Number'}
+                placeholder={'Type her'}
+                placeholderTextColor={colors.g3}
+                onChangeText={handleChange('phone')}
+                value={values.phone}
+                touched={touched.phone}
+                errorMessage={errors.phone}
+                keyboardType={'number-pad'}
+              />
+              <AppInput
+                title={'Country'}
+                placeholder={'Select'}
+                placeholderTextColor={colors.g3}
+                onChangeText={handleChange('country')}
+                value={values.country}
+                touched={touched.country}
+                errorMessage={errors.country}
+              />
+              <AppInput
+                title={'City'}
+                placeholder={'Select'}
+                placeholderTextColor={colors.g3}
+                onChangeText={handleChange('city')}
+                value={values.city}
+                touched={touched.city}
+                errorMessage={errors.city}
+              />
+              <AppInput
+                title={'Age'}
+                placeholder={'Type here'}
+                placeholderTextColor={colors.g3}
+                onChangeText={handleChange('age')}
+                value={values.age}
+                touched={touched.age}
+                errorMessage={errors.age}
+                keyboardType={'number-pad'}
+                maxLength={2}
+              />
 
-  render() {
-    return (
-      <View
-        style={{
-          // backgroundColor: '#fad',
-          flex: 1,
-        }}>
-        <Loading visible={this.state.visible} />
-        <NavHeader title={'SignUp'} />
-        <KeyboardAwareScrollView
-          contentContainerStyle={{
-            flexGrow: 2,
-          }}>
-          <View
-            style={{
-              height: '18%',
-              // width: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <View
-              style={{
-                // backgroundColor: '#faf',
-                height: 140,
-                width: 140,
-              }}>
-              <Image
-                // source={{
-                //   uri: '',
-                // }}
-                // source={require('../../asserts/user.jpg')}
-                style={{
-                  resizeMode: 'contain',
-                  height: '80%',
-                  width: '80%',
+              <DropDown
+                label={'Sex'}
+                placeholder={'Select'}
+                containerStyle={styles.dropContainer}
+                options={Selection_List}
+                value={values.sex}
+                touched={touched.sex}
+                errorMessage={errors.sex}
+                onChangeValue={txt => {
+                  handleChange('sex'), txt;
+                }}
+                searchInput={true}
+              />
+
+              <DropDown
+                label={'Pronoun'}
+                placeholder={'Select'}
+                containerStyle={styles.dropContainer}
+                options={Pronoun_List}
+                value={values.pronoun}
+                touched={touched.pronoun}
+                errorMessage={errors.pronoun}
+                onChangeValue={txt => {
+                  handleChange('pronoun'), txt;
+                }}
+              />
+
+              <AppButton
+                width={WP('40')}
+                bgColor={colors.b1}
+                title={'Next'}
+                height={WP('10')}
+                style={styles.btnContainer}
+                onPress={() => {
+                  handleSubmit();
                 }}
               />
             </View>
-          </View>
+          )}
+        </Formik>
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
+  );
+};
 
-          {/* {Bottom View} */}
-          <View
-            style={{
-              height: 400,
-              // backgroundColor: 'red',
-              padding: 20,
-            }}>
-            <AppInput
-              ic={'ios-person'}
-              onChangeText={txt => this.setState({name: txt})}
-              placeholder={'Name'}
-            />
-            <AppInput
-              ic={'ios-mail'}
-              onChangeText={txt => this.setState({email: txt})}
-              placeholder={'Email'}
-              st={{
-                marginTop: 10,
-                marginBottom: 10,
-              }}
-            />
-            <AppInput
-              ic={'ios-call'}
-              onChangeText={txt => this.setState({phone: txt})}
-              placeholder={'Phone'}
-              st={{
-                marginBottom: 10,
-              }}
-              maxLength={11}
-            />
-            <View
-              style={{
-                height: 55,
-                // backgroundColor: '#faf',
-                flexDirection: 'row',
-                borderWidth: 0.5,
-                borderRadius: 10,
-              }}>
-              <View
-                style={{
-                  height: '100%',
-                  width: '15%',
-                  // backgroundColor: '#aaf',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRightWidth: 0.5,
-                }}>
-                <Ionicons name={'lock-closed'} size={20} color={'red'} />
-              </View>
-              <View
-                style={{
-                  height: '100%',
-                  width: '75%',
-                  // backgroundColor: '#faf',
-                }}>
-                <TextInput
-                  onChangeText={txt => this.setState({password: txt})}
-                  style={{
-                    height: '100%',
-                    width: '100%',
-                    padding: 10,
-                  }}
-                  placeholder={'Password'}
-                  secureTextEntry={this.state.secureTxt}
-                />
-              </View>
-              {this.state.password !== '' ? (
-                <TouchableOpacity
-                  onPress={() =>
-                    this.setState({secureTxt: !this.state.secureTxt})
-                  }
-                  style={{
-                    height: '100%',
-                    width: '10%',
-                    // backgroundColor: '#aaf',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                  <Ionicons
-                    name={
-                      this.state.secureTxt ? 'eye-outline' : 'eye-off-outline'
-                    }
-                    size={20}
-                    color={'red'}
-                  />
-                </TouchableOpacity>
-              ) : null}
-            </View>
-
-            {/* create Account */}
-            <View
-              style={{
-                marginTop: 40,
-                width: '100%',
-                alignItems: 'center',
-              }}>
-              <View
-                style={{
-                  // backgroundColor: '#faf',
-                  marginTop: 18,
-                  width: '100%',
-                  alignItems: 'center',
-                }}>
-                <AppBtn
-                  onPress={() => this.createUser()}
-                  txt={'Create Account'}
-                />
-              </View>
-            </View>
-          </View>
-          <View
-            style={{
-              // backgroundColor: '#faf',
-              height: 100,
-              flexDirection: 'row',
-              justifyContent: 'center',
-            }}>
-            <Text
-              style={{
-                marginTop: 5,
-              }}>
-              Already have an account?{'  '}
-            </Text>
-            <TouchableOpacity
-              onPress={() => {
-                this.setState({modalVisible: true});
-              }}>
-              <Text
-                style={{
-                  color: 'red',
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                  textDecorationLine: 'underline',
-                }}>
-                Sign In
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAwareScrollView>
-       
-      </View>
-    );
-  }
-}
+export {SignUp};

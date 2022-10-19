@@ -1,4 +1,4 @@
-export {AirConditioner} from './AirConditioner';
+export {default} from './AirConditioner';
 export {Plumber} from './Plumber';
 export {CarServices} from './CarServices';
 // export {AirConditioner} from './AirConditioner';
